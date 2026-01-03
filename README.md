@@ -25,3 +25,4 @@ Opinionated registry of MCP servers for the desktop app.
 - `command`: The app can run a command (usually `npx`) if Node is available.
 
 Native binaries should include `artifacts` with `url`, `filename`, and `sha256`.
+If the artifact is an archive, add `entrypoint` to point to the executable inside the archive.
