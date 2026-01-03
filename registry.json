@@ -6,6 +6,7 @@
       "id": "google-mcp",
       "name": "Google Workspace MCP",
       "summary": "Gmail, Calendar, Drive, Docs, Sheets, Slides, and more via OAuth.",
+      "version": "0.1.0",
       "homepage": "https://github.com/GabrielGallagher/google-mcp",
       "category": "workspace",
       "runtime": {
@@ -36,6 +37,7 @@
       "id": "slack-mcp",
       "name": "Slack MCP",
       "summary": "Search, read, and post Slack messages via user token.",
+      "version": "0.1.0",
       "homepage": "https://github.com/jeremyroland/slack-mcp-server",
       "category": "communication",
       "runtime": {
