@@ -1,0 +1,59 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-01-03T00:00:00Z",
+  "entries": [
+    {
+      "id": "google-mcp",
+      "name": "Google Workspace MCP",
+      "summary": "Gmail, Calendar, Drive, Docs, Sheets, Slides, and more via OAuth.",
+      "homepage": "https://github.com/GabrielGallagher/google-mcp",
+      "category": "workspace",
+      "runtime": {
+        "preferred": "native",
+        "fallback": "node"
+      },
+      "install": {
+        "method": "manual",
+        "instructions": "Clone https://github.com/GabrielGallagher/google-mcp, run pnpm install && pnpm build, then point GOOGLE_MCP_PATH at dist/index.js."
+      },
+      "env": [
+        {
+          "key": "GOOGLE_MCP_SCOPE_PROFILE",
+          "type": "enum",
+          "values": ["readonly", "editor", "full"],
+          "default": "readonly",
+          "required": false
+        },
+        {
+          "key": "GOOGLE_MCP_GMAIL_SEND",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "slack-mcp",
+      "name": "Slack MCP",
+      "summary": "Search, read, and post Slack messages via user token.",
+      "homepage": "https://github.com/jeremyroland/slack-mcp-server",
+      "category": "communication",
+      "runtime": {
+        "preferred": "node",
+        "fallback": "node"
+      },
+      "install": {
+        "method": "command",
+        "command": "npx -y slack-mcp-server@latest --transport stdio",
+        "notes": "Requires SLACK_MCP_XOXP_TOKEN environment variable."
+      },
+      "env": [
+        {
+          "key": "SLACK_MCP_XOXP_TOKEN",
+          "type": "secret",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
