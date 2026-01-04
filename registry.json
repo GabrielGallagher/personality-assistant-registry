@@ -1,6 +1,6 @@
 {
-  "version": "0.1.0",
-  "updatedAt": "2026-01-03T00:00:00Z",
+  "version": "0.2.0",
+  "updatedAt": "2026-01-04T00:00:00Z",
   "entries": [
     {
       "id": "google-mcp",
@@ -19,6 +19,17 @@
       },
       "env": [
         {
+          "key": "GOOGLE_MCP_PATH",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "GOOGLE_MCP_SERVICES",
+          "type": "string",
+          "default": "gmail,calendar,drive,docs,sheets,slides",
+          "required": false
+        },
+        {
           "key": "GOOGLE_MCP_SCOPE_PROFILE",
           "type": "enum",
           "values": ["readonly", "editor", "full"],
@@ -26,7 +37,30 @@
           "required": false
         },
         {
+          "key": "GOOGLE_MCP_SCOPES",
+          "type": "string",
+          "required": false
+        },
+        {
+          "key": "GOOGLE_MCP_GMAIL_COMPOSE",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "key": "GOOGLE_MCP_GMAIL_MODIFY",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
           "key": "GOOGLE_MCP_GMAIL_SEND",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "key": "GOOGLE_MCP_CALENDAR_WRITE",
           "type": "boolean",
           "default": false,
           "required": false
@@ -56,6 +90,99 @@
           "required": true
         }
       ]
+    },
+    {
+      "id": "clickup-mcp",
+      "name": "ClickUp MCP",
+      "summary": "Sync ClickUp tasks, statuses, and assignments.",
+      "version": "0.1.0",
+      "homepage": "https://www.npmjs.com/package/@chykalophia/clickup-mcp-server",
+      "category": "project-management",
+      "runtime": {
+        "preferred": "node",
+        "fallback": "node"
+      },
+      "install": {
+        "method": "command",
+        "command": "npx -y @chykalophia/clickup-mcp-server",
+        "notes": "Requires CLICKUP_API_TOKEN environment variable."
+      },
+      "env": [
+        {
+          "key": "CLICKUP_API_TOKEN",
+          "type": "secret",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "buildbetter-mcp",
+      "name": "BuildBetter MCP",
+      "summary": "Meeting insights and call summaries via BuildBetter.",
+      "version": "0.1.0",
+      "homepage": "https://mcp.buildbetter.ai",
+      "category": "meetings",
+      "runtime": {
+        "preferred": "node",
+        "fallback": "node"
+      },
+      "install": {
+        "method": "command",
+        "command": "npx mcp-remote https://mcp.buildbetter.ai?apikey=$BUILDBETTER_API_KEY",
+        "notes": "Requires BUILDBETTER_API_KEY environment variable."
+      },
+      "env": [
+        {
+          "key": "BUILDBETTER_API_KEY",
+          "type": "secret",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "freescout-mcp",
+      "name": "FreeScout MCP",
+      "summary": "Shared inbox context and ticket lookups from FreeScout.",
+      "version": "0.1.0",
+      "homepage": "https://www.npmjs.com/package/@verygoodplugins/mcp-freescout",
+      "category": "support",
+      "runtime": {
+        "preferred": "node",
+        "fallback": "node"
+      },
+      "install": {
+        "method": "command",
+        "command": "npx -y @verygoodplugins/mcp-freescout@latest",
+        "notes": "Requires FREESCOUT_URL and FREESCOUT_API_KEY environment variables."
+      },
+      "env": [
+        {
+          "key": "FREESCOUT_URL",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "FREESCOUT_API_KEY",
+          "type": "secret",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "local-filesystem",
+      "name": "Local Filesystem Tools",
+      "summary": "Built-in file access for the assistant runtime.",
+      "version": "0.1.0",
+      "homepage": "https://docs.anthropic.com/en/docs/claude-code/tool-use",
+      "category": "core",
+      "runtime": {
+        "preferred": "native",
+        "fallback": "native"
+      },
+      "install": {
+        "method": "manual",
+        "instructions": "Built into the assistant runtime. No install required."
+      }
     }
   ]
 }
