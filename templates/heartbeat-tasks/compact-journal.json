@@ -1,0 +1,13 @@
+{
+  "id": "heartbeat-compact-journal",
+  "type": "heartbeat-task",
+  "name": "Compact Journal",
+  "summary": "Apply approved journal entries into snapshot YAMLs.",
+  "tags": ["memory"],
+  "task": {
+    "prompt": "HEARTBEAT TASK: Journal Compaction\n\nGoal: Apply approved journal entries to snapshot YAML files, safely across multiple bots.\n\nLocking:\n1. Check for {{path.memory_root}}/journal.lock\n2. If it exists and is newer than 30 minutes, skip compaction and exit\n3. If missing or stale, create/overwrite it with current timestamp and hostname\n\nCompaction steps:\n1. Read {{path.memory_root}}/journal.jsonl (approved entries) and {{path.memory_root}}/pending.jsonl (do not apply)\n2. For each journal entry, apply to the target snapshot file:\n   - type \"set\": set value at path (overwrite)\n   - type \"merge\": shallow-merge object at path\n   - type \"append\": append to array at path, de-dupe by idempotency_key or id\n   - type \"delete\": remove value at path or array entry by id/idempotency_key\n   - type \"schema_proposal\": skip (requires approval)\n3. Write updated YAMLs atomically (write temp file then move)\n4. Archive journal.jsonl to journal.archive.jsonl with a timestamp suffix, then clear journal.jsonl\n5. Remove {{path.memory_root}}/journal.lock\n\nIf journal.jsonl is empty, remove the lock and exit.",
+    "intervalMinutes": 240,
+    "useGlobalSources": true,
+    "schemaTargets": ""
+  }
+}

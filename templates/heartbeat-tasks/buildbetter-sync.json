@@ -1,0 +1,14 @@
+{
+  "id": "heartbeat-buildbetter",
+  "type": "heartbeat-task",
+  "name": "BuildBetter Sync",
+  "summary": "Pull recent BuildBetter call insights into the journal.",
+  "tags": ["meetings"],
+  "requires": ["mcp:buildbetter-mcp"],
+  "task": {
+    "prompt": "HEARTBEAT TASK: BuildBetter Sync\n\n1. Read {{path.memory_root}}/context.yaml to see what's already captured\n2. Use BuildBetter MCP to search for recent call extractions (last 7 days)\n3. Look for:\n   - Client feedback or requests\n   - Commitments made\n   - Action items mentioned\n   - Important decisions\n4. Append journal entries for context.yaml updates\n5. Append journal entries for observations.yaml updates\n\nDon't duplicate information already in the files.",
+    "intervalMinutes": 240,
+    "useGlobalSources": true,
+    "schemaTargets": ""
+  }
+}

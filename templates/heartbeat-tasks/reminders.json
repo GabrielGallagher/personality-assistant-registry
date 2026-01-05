@@ -1,0 +1,14 @@
+{
+  "id": "heartbeat-reminders",
+  "type": "heartbeat-task",
+  "name": "Reminders",
+  "summary": "Check reminders and DM the owner when they are due.",
+  "tags": ["slack", "personal"],
+  "requires": ["mcp:slack-mcp"],
+  "task": {
+    "prompt": "HEARTBEAT TASK: Check Reminders\n\nCurrent time: {{local_time}} ({{timezone}})\nUTC: {{utc_time}}\n\n1. Read {{path.memory_root}}/reminders.yaml\n2. Check for any reminders where target_time has passed (compare to current time above)\n3. For each due reminder:\n   - Use the Slack MCP to send a DM to user {{owner_user_id}} with the reminder message\n   - Update the reminder status to \"sent\" in reminders.yaml (direct edit allowed)\n4. Log what you did\n\nIf reminders.yaml doesn't exist, create it with an empty reminders array.",
+    "intervalMinutes": 30,
+    "useGlobalSources": true,
+    "schemaTargets": ""
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "heartbeat-slack-scan",
+  "type": "heartbeat-task",
+  "name": "Slack Scan",
+  "summary": "Scan recent Slack messages for project updates worth journaling.",
+  "tags": ["slack", "ops"],
+  "requires": ["mcp:slack-mcp"],
+  "task": {
+    "prompt": "HEARTBEAT TASK: Slack Channel Scan\n\n1. Read {{path.memory_root}}/context.yaml to see current clients and projects\n2. Use the Slack MCP to search recent messages (last 24h) for mentions of:\n   - Client names from context.yaml\n   - Project names (or key initiatives)\n   - Key team members\n3. If you find relevant updates not already captured:\n   - Append journal entries for context.yaml updates\n   - Append journal entries for observations.yaml updates\n4. Be selective - only capture genuinely useful information\n\nKeep it brief, don't overwhelm the files.",
+    "intervalMinutes": 120,
+    "useGlobalSources": true,
+    "schemaTargets": ""
+  }
+}

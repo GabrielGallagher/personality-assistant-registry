@@ -1,10 +1,11 @@
 # Personality Assistant Registry
 
-Opinionated registry of MCP servers for the desktop app.
+Registry of MCP servers and reusable templates for the desktop app.
 
 ## Files
 
 - `registry.json`: Registry index consumed by the desktop app.
+- `templates/`: Human-editable template library (heartbeat tasks, prompts, presets, etc.).
 
 ## Entry Fields
 
@@ -18,6 +19,11 @@ Opinionated registry of MCP servers for the desktop app.
 - `install`: Install metadata (manual or command).
 - `artifacts`: Optional list of native binaries with SHA256 hashes.
 - `env`: Environment variables expected by the MCP server.
+
+## Templates
+
+Templates are included in `registry.json` under the `templates` array for quick app access,
+and also stored as JSON files under `templates/` for easier review and editing.
 
 ## Install Methods
 

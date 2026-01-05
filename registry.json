@@ -1,6 +1,6 @@
 {
-  "version": "0.2.0",
-  "updatedAt": "2026-01-04T00:00:00Z",
+  "version": "0.3.0",
+  "updatedAt": "2026-01-04T18:00:00Z",
   "entries": [
     {
       "id": "google-mcp",
@@ -182,6 +182,77 @@
       "install": {
         "method": "manual",
         "instructions": "Built into the assistant runtime. No install required."
+      }
+    }
+  ],
+  "templates": [
+    {
+      "id": "heartbeat-reminders",
+      "type": "heartbeat-task",
+      "name": "Reminders",
+      "summary": "Check reminders and DM the owner when they are due.",
+      "tags": ["slack", "personal"],
+      "requires": ["mcp:slack-mcp"],
+      "task": {
+        "prompt": "HEARTBEAT TASK: Check Reminders\n\nCurrent time: {{local_time}} ({{timezone}})\nUTC: {{utc_time}}\n\n1. Read {{path.memory_root}}/reminders.yaml\n2. Check for any reminders where target_time has passed (compare to current time above)\n3. For each due reminder:\n   - Use the Slack MCP to send a DM to user {{owner_user_id}} with the reminder message\n   - Update the reminder status to \"sent\" in reminders.yaml (direct edit allowed)\n4. Log what you did\n\nIf reminders.yaml doesn't exist, create it with an empty reminders array.",
+        "intervalMinutes": 30,
+        "useGlobalSources": true,
+        "schemaTargets": ""
+      }
+    },
+    {
+      "id": "heartbeat-slack-scan",
+      "type": "heartbeat-task",
+      "name": "Slack Scan",
+      "summary": "Scan recent Slack messages for project updates worth journaling.",
+      "tags": ["slack", "ops"],
+      "requires": ["mcp:slack-mcp"],
+      "task": {
+        "prompt": "HEARTBEAT TASK: Slack Channel Scan\n\n1. Read {{path.memory_root}}/context.yaml to see current clients and projects\n2. Use the Slack MCP to search recent messages (last 24h) for mentions of:\n   - Client names from context.yaml\n   - Project names (or key initiatives)\n   - Key team members\n3. If you find relevant updates not already captured:\n   - Append journal entries for context.yaml updates\n   - Append journal entries for observations.yaml updates\n4. Be selective - only capture genuinely useful information\n\nKeep it brief, don't overwhelm the files.",
+        "intervalMinutes": 120,
+        "useGlobalSources": true,
+        "schemaTargets": ""
+      }
+    },
+    {
+      "id": "heartbeat-buildbetter",
+      "type": "heartbeat-task",
+      "name": "BuildBetter Sync",
+      "summary": "Pull recent BuildBetter call insights into the journal.",
+      "tags": ["meetings"],
+      "requires": ["mcp:buildbetter-mcp"],
+      "task": {
+        "prompt": "HEARTBEAT TASK: BuildBetter Sync\n\n1. Read {{path.memory_root}}/context.yaml to see what's already captured\n2. Use BuildBetter MCP to search for recent call extractions (last 7 days)\n3. Look for:\n   - Client feedback or requests\n   - Commitments made\n   - Action items mentioned\n   - Important decisions\n4. Append journal entries for context.yaml updates\n5. Append journal entries for observations.yaml updates\n\nDon't duplicate information already in the files.",
+        "intervalMinutes": 240,
+        "useGlobalSources": true,
+        "schemaTargets": ""
+      }
+    },
+    {
+      "id": "heartbeat-clickup",
+      "type": "heartbeat-task",
+      "name": "ClickUp Sync",
+      "summary": "Sync ClickUp task updates into the journal.",
+      "tags": ["project-management"],
+      "requires": ["mcp:clickup-mcp"],
+      "task": {
+        "prompt": "HEARTBEAT TASK: ClickUp Sync\n\n1. Read {{path.memory_root}}/tasks.yaml to see current task snapshot\n2. Use ClickUp MCP to check:\n   - Tasks assigned to {{owner_user_id}} that are overdue or due soon\n   - Recently completed tasks\n   - New high-priority tasks\n3. Append journal entries for tasks.yaml changes\n4. If there are urgent items, note them for the next reminder check\n\nKeep the task list focused on what's actionable.",
+        "intervalMinutes": 240,
+        "useGlobalSources": true,
+        "schemaTargets": ""
+      }
+    },
+    {
+      "id": "heartbeat-compact-journal",
+      "type": "heartbeat-task",
+      "name": "Compact Journal",
+      "summary": "Apply approved journal entries into snapshot YAMLs.",
+      "tags": ["memory"],
+      "task": {
+        "prompt": "HEARTBEAT TASK: Journal Compaction\n\nGoal: Apply approved journal entries to snapshot YAML files, safely across multiple bots.\n\nLocking:\n1. Check for {{path.memory_root}}/journal.lock\n2. If it exists and is newer than 30 minutes, skip compaction and exit\n3. If missing or stale, create/overwrite it with current timestamp and hostname\n\nCompaction steps:\n1. Read {{path.memory_root}}/journal.jsonl (approved entries) and {{path.memory_root}}/pending.jsonl (do not apply)\n2. For each journal entry, apply to the target snapshot file:\n   - type \"set\": set value at path (overwrite)\n   - type \"merge\": shallow-merge object at path\n   - type \"append\": append to array at path, de-dupe by idempotency_key or id\n   - type \"delete\": remove value at path or array entry by id/idempotency_key\n   - type \"schema_proposal\": skip (requires approval)\n3. Write updated YAMLs atomically (write temp file then move)\n4. Archive journal.jsonl to journal.archive.jsonl with a timestamp suffix, then clear journal.jsonl\n5. Remove {{path.memory_root}}/journal.lock\n\nIf journal.jsonl is empty, remove the lock and exit.",
+        "intervalMinutes": 240,
+        "useGlobalSources": true,
+        "schemaTargets": ""
       }
     }
   ]

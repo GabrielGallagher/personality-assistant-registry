@@ -1,0 +1,14 @@
+{
+  "id": "heartbeat-clickup",
+  "type": "heartbeat-task",
+  "name": "ClickUp Sync",
+  "summary": "Sync ClickUp task updates into the journal.",
+  "tags": ["project-management"],
+  "requires": ["mcp:clickup-mcp"],
+  "task": {
+    "prompt": "HEARTBEAT TASK: ClickUp Sync\n\n1. Read {{path.memory_root}}/tasks.yaml to see current task snapshot\n2. Use ClickUp MCP to check:\n   - Tasks assigned to {{owner_user_id}} that are overdue or due soon\n   - Recently completed tasks\n   - New high-priority tasks\n3. Append journal entries for tasks.yaml changes\n4. If there are urgent items, note them for the next reminder check\n\nKeep the task list focused on what's actionable.",
+    "intervalMinutes": 240,
+    "useGlobalSources": true,
+    "schemaTargets": ""
+  }
+}
