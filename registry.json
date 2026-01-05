@@ -69,8 +69,8 @@
           "key": "GOOGLE_MCP_CREDENTIALS_PATH",
           "type": "string",
           "required": false,
-          "label": "Credentials file",
-          "help": "Path to OAuth credentials.json. Overrides the default config location.",
+          "label": "Credentials file (or paste below)",
+          "help": "Path to OAuth credentials.json. Required unless you paste credentials JSON.",
           "placeholder": "C:\\\\Users\\\\you\\\\Downloads\\\\credentials.json",
           "picker": "file"
         },
