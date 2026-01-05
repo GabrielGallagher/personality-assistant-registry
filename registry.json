@@ -28,6 +28,24 @@
           "picker": "file"
         },
         {
+          "key": "GOOGLE_MCP_CREDENTIALS_PATH",
+          "type": "string",
+          "required": false,
+          "label": "Credentials file",
+          "help": "Path to OAuth credentials.json. Overrides the default config location.",
+          "placeholder": "C:\\\\Users\\\\you\\\\Downloads\\\\credentials.json",
+          "picker": "file"
+        },
+        {
+          "key": "GOOGLE_MCP_CREDENTIALS_JSON",
+          "type": "secret",
+          "required": false,
+          "label": "Credentials JSON (paste)",
+          "help": "Paste the contents of credentials.json. Overrides the file path.",
+          "advanced": true,
+          "multiline": true
+        },
+        {
           "key": "GOOGLE_MCP_SERVICES",
           "type": "string",
           "default": "gmail,calendar,drive,docs,sheets,slides",
