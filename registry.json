@@ -1,6 +1,6 @@
 {
-  "version": "0.3.0",
-  "updatedAt": "2026-01-04T18:00:00Z",
+  "version": "0.3.1",
+  "updatedAt": "2026-01-04T19:00:00Z",
   "entries": [
     {
       "id": "google-mcp",
@@ -15,55 +15,74 @@
       },
       "install": {
         "method": "manual",
-        "instructions": "Clone https://github.com/GabrielGallagher/google-mcp, run pnpm install && pnpm build, then point GOOGLE_MCP_PATH at dist/index.js."
+        "instructions": "Clone https://github.com/GabrielGallagher/google-mcp, run pnpm install && pnpm build, then point GOOGLE_MCP_PATH at dist/index.js. Place your Google OAuth credentials at %APPDATA%\\\\google-mcp\\\\credentials.json (Windows) or ~/.config/google-mcp/credentials.json (macOS/Linux)."
       },
       "env": [
         {
           "key": "GOOGLE_MCP_PATH",
           "type": "string",
-          "required": true
+          "required": true,
+          "label": "Google MCP path",
+          "help": "Path to the built MCP entrypoint (dist/index.js).",
+          "placeholder": "C:\\\\path\\\\to\\\\google-mcp\\\\dist\\\\index.js",
+          "picker": "file"
         },
         {
           "key": "GOOGLE_MCP_SERVICES",
           "type": "string",
           "default": "gmail,calendar,drive,docs,sheets,slides",
-          "required": false
+          "required": false,
+          "label": "Enabled services",
+          "help": "Comma-separated list (or use 'all')."
         },
         {
           "key": "GOOGLE_MCP_SCOPE_PROFILE",
           "type": "enum",
           "values": ["readonly", "editor", "full"],
           "default": "readonly",
-          "required": false
+          "required": false,
+          "label": "Scope profile",
+          "help": "readonly = read-only access; editor = read/write docs; full = includes send/write actions."
         },
         {
           "key": "GOOGLE_MCP_SCOPES",
           "type": "string",
-          "required": false
+          "required": false,
+          "label": "Custom scopes override",
+          "help": "Advanced: override scopes completely (comma/space-separated). Leave blank to use the profile.",
+          "advanced": true
         },
         {
           "key": "GOOGLE_MCP_GMAIL_COMPOSE",
           "type": "boolean",
           "default": false,
-          "required": false
+          "required": false,
+          "label": "Allow Gmail compose",
+          "help": "Enable drafting emails."
         },
         {
           "key": "GOOGLE_MCP_GMAIL_MODIFY",
           "type": "boolean",
           "default": false,
-          "required": false
+          "required": false,
+          "label": "Allow Gmail modify",
+          "help": "Enable label/mark actions."
         },
         {
           "key": "GOOGLE_MCP_GMAIL_SEND",
           "type": "boolean",
           "default": false,
-          "required": false
+          "required": false,
+          "label": "Allow Gmail send",
+          "help": "Enable sending emails."
         },
         {
           "key": "GOOGLE_MCP_CALENDAR_WRITE",
           "type": "boolean",
           "default": false,
-          "required": false
+          "required": false,
+          "label": "Allow Calendar write",
+          "help": "Enable create/update/delete events."
         }
       ]
     },
@@ -168,22 +187,6 @@
         }
       ]
     },
-    {
-      "id": "local-filesystem",
-      "name": "Local Filesystem Tools",
-      "summary": "Built-in file access for the assistant runtime.",
-      "version": "0.1.0",
-      "homepage": "https://docs.anthropic.com/en/docs/claude-code/tool-use",
-      "category": "core",
-      "runtime": {
-        "preferred": "native",
-        "fallback": "native"
-      },
-      "install": {
-        "method": "manual",
-        "instructions": "Built into the assistant runtime. No install required."
-      }
-    }
   ],
   "templates": [
     {
