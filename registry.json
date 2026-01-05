@@ -1,6 +1,6 @@
 {
-  "version": "0.3.1",
-  "updatedAt": "2026-01-04T19:00:00Z",
+  "version": "0.3.2",
+  "updatedAt": "2026-01-05T03:00:00Z",
   "entries": [
     {
       "id": "google-mcp",
@@ -240,6 +240,101 @@
           "key": "FREESCOUT_API_KEY",
           "type": "secret",
           "required": true
+        }
+      ]
+    },
+    {
+      "id": "xero-mcp",
+      "name": "Xero MCP",
+      "summary": "Xero accounting data with optional read-only mode.",
+      "version": "0.0.14",
+      "homepage": "https://github.com/GabrielGallagher/xero-mcp-server",
+      "category": "finance",
+      "runtime": {
+        "preferred": "native",
+        "fallback": "node"
+      },
+      "install": {
+        "method": "manual",
+        "instructions": "Managed install is available in the desktop app. For manual setup, clone https://github.com/GabrielGallagher/xero-mcp-server, run npm install && npm run build, then point XERO_MCP_PATH at dist/index.js."
+      },
+      "artifacts": [
+        {
+          "platform": "windows",
+          "arch": "x86_64",
+          "url": "https://github.com/GabrielGallagher/xero-mcp-server/releases/download/v0.0.14/xero-mcp-windows-x86_64.zip",
+          "sha256": "d1e2568263d6b87f42ef7b51e125b56551f7d3fb6503ac6f2cb168206bf3410e",
+          "filename": "xero-mcp-windows-x86_64.zip",
+          "entrypoint": "dist/index.js",
+          "size": 9734033
+        },
+        {
+          "platform": "macos",
+          "arch": "aarch64",
+          "url": "https://github.com/GabrielGallagher/xero-mcp-server/releases/download/v0.0.14/xero-mcp-macos-aarch64.zip",
+          "sha256": "d90ad19473ae613c337c0482464e0d6df911f48614e14468c4d33931d02783b6",
+          "filename": "xero-mcp-macos-aarch64.zip",
+          "entrypoint": "dist/index.js",
+          "size": 10205218
+        },
+        {
+          "platform": "macos",
+          "arch": "x86_64",
+          "url": "https://github.com/GabrielGallagher/xero-mcp-server/releases/download/v0.0.14/xero-mcp-macos-x86_64.zip",
+          "sha256": "280ea69e7f83ffa6c6d49bc9872d91075c145e7b5beadbbdf8b8efcc6b94e545",
+          "filename": "xero-mcp-macos-x86_64.zip",
+          "entrypoint": "dist/index.js",
+          "size": 10205218
+        },
+        {
+          "platform": "linux",
+          "arch": "x86_64",
+          "url": "https://github.com/GabrielGallagher/xero-mcp-server/releases/download/v0.0.14/xero-mcp-linux-x86_64.zip",
+          "sha256": "a262e6799e971c029b9f3c9701283882acb2982ddee959568b19be280d844091",
+          "filename": "xero-mcp-linux-x86_64.zip",
+          "entrypoint": "dist/index.js",
+          "size": 10205218
+        }
+      ],
+      "env": [
+        {
+          "key": "XERO_CLIENT_ID",
+          "type": "string",
+          "required": true,
+          "label": "Client ID",
+          "help": "Xero OAuth app client ID."
+        },
+        {
+          "key": "XERO_CLIENT_SECRET",
+          "type": "secret",
+          "required": true,
+          "label": "Client secret",
+          "help": "Xero OAuth app client secret."
+        },
+        {
+          "key": "XERO_CLIENT_BEARER_TOKEN",
+          "type": "secret",
+          "required": false,
+          "label": "Bearer token (optional)",
+          "help": "Optional access token if you manage OAuth outside the MCP."
+        },
+        {
+          "key": "XERO_READONLY",
+          "type": "boolean",
+          "default": true,
+          "required": false,
+          "label": "Read-only mode",
+          "help": "Hide write tools (create/update/delete) and enforce read-only behavior."
+        },
+        {
+          "key": "XERO_MCP_PATH",
+          "type": "string",
+          "required": false,
+          "label": "Xero MCP path",
+          "help": "Path to the built MCP entrypoint (dist/index.js). Only needed for manual installs.",
+          "placeholder": "C:\\\\path\\\\to\\\\xero-mcp-server\\\\dist\\\\index.js",
+          "picker": "file",
+          "advanced": true
         }
       ]
     }
