@@ -1,6 +1,6 @@
 {
-  "version": "0.3.2",
-  "updatedAt": "2026-01-05T03:00:00Z",
+  "version": "0.3.3",
+  "updatedAt": "2026-01-05T21:51:45Z",
   "entries": [
     {
       "id": "google-mcp",
@@ -9,6 +9,9 @@
       "version": "1.0.5",
       "homepage": "https://github.com/GabrielGallagher/google-mcp",
       "category": "workspace",
+      "docs": {
+        "path": "docs/google-mcp.md"
+      },
       "runtime": {
         "preferred": "native",
         "fallback": "node"
@@ -149,6 +152,9 @@
       "version": "0.1.0",
       "homepage": "https://github.com/jeremyroland/slack-mcp-server",
       "category": "communication",
+      "docs": {
+        "path": "docs/slack-mcp.md"
+      },
       "runtime": {
         "preferred": "node",
         "fallback": "node"
@@ -173,6 +179,9 @@
       "version": "0.1.0",
       "homepage": "https://www.npmjs.com/package/@chykalophia/clickup-mcp-server",
       "category": "project-management",
+      "docs": {
+        "path": "docs/clickup-mcp.md"
+      },
       "runtime": {
         "preferred": "node",
         "fallback": "node"
@@ -197,6 +206,9 @@
       "version": "0.1.0",
       "homepage": "https://mcp.buildbetter.ai",
       "category": "meetings",
+      "docs": {
+        "path": "docs/buildbetter-mcp.md"
+      },
       "runtime": {
         "preferred": "node",
         "fallback": "node"
@@ -221,6 +233,9 @@
       "version": "0.1.0",
       "homepage": "https://www.npmjs.com/package/@verygoodplugins/mcp-freescout",
       "category": "support",
+      "docs": {
+        "path": "docs/freescout-mcp.md"
+      },
       "runtime": {
         "preferred": "node",
         "fallback": "node"
@@ -250,6 +265,9 @@
       "version": "0.0.14",
       "homepage": "https://github.com/GabrielGallagher/xero-mcp-server",
       "category": "finance",
+      "docs": {
+        "path": "docs/xero-mcp.md"
+      },
       "runtime": {
         "preferred": "native",
         "fallback": "node"
