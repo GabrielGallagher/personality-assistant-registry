@@ -6,7 +6,7 @@
       "id": "google-mcp",
       "name": "Google Workspace MCP",
       "summary": "Gmail, Calendar, Drive, Docs, Sheets, Slides, and more via OAuth.",
-      "version": "0.1.0",
+      "version": "1.0.5",
       "homepage": "https://github.com/GabrielGallagher/google-mcp",
       "category": "workspace",
       "runtime": {
@@ -15,8 +15,46 @@
       },
       "install": {
         "method": "manual",
-        "instructions": "Clone https://github.com/GabrielGallagher/google-mcp, run pnpm install && pnpm build, then point GOOGLE_MCP_PATH at dist/index.js. Place your Google OAuth credentials at %APPDATA%\\\\google-mcp\\\\credentials.json (Windows) or ~/.config/google-mcp/credentials.json (macOS/Linux)."
+        "instructions": "Managed install is available in the desktop app. For manual setup, clone https://github.com/GabrielGallagher/google-mcp, run pnpm install && pnpm build, then point GOOGLE_MCP_PATH at dist/index.js. Place your Google OAuth credentials at %APPDATA%\\\\google-mcp\\\\credentials.json (Windows) or ~/.config/google-mcp/credentials.json (macOS/Linux)."
       },
+      "artifacts": [
+        {
+          "platform": "windows",
+          "arch": "x86_64",
+          "url": "https://github.com/GabrielGallagher/google-mcp/releases/download/v1.0.5/google-mcp-windows-x86_64.zip",
+          "sha256": "222f5ef975e09ea1c6e1a67ab2b4fac26c3db9b95f853c3077ff6a62340cd74b",
+          "filename": "google-mcp-windows-x86_64.zip",
+          "entrypoint": "dist/index.js",
+          "size": 17967517
+        },
+        {
+          "platform": "macos",
+          "arch": "aarch64",
+          "url": "https://github.com/GabrielGallagher/google-mcp/releases/download/v1.0.5/google-mcp-macos-aarch64.zip",
+          "sha256": "e426b2405e5e41a3682ab63ae2b9627af6dc2ca57061b01af44a466d8de1f08a",
+          "filename": "google-mcp-macos-aarch64.zip",
+          "entrypoint": "dist/index.js",
+          "size": 18005656
+        },
+        {
+          "platform": "macos",
+          "arch": "x86_64",
+          "url": "https://github.com/GabrielGallagher/google-mcp/releases/download/v1.0.5/google-mcp-macos-x86_64.zip",
+          "sha256": "283f2c2b8f40dc7426695e4fe5e97e8f5259466528c6c561c5647b120b05304d",
+          "filename": "google-mcp-macos-x86_64.zip",
+          "entrypoint": "dist/index.js",
+          "size": 18005656
+        },
+        {
+          "platform": "linux",
+          "arch": "x86_64",
+          "url": "https://github.com/GabrielGallagher/google-mcp/releases/download/v1.0.5/google-mcp-linux-x86_64.zip",
+          "sha256": "78474e232d0ce489a415b6fe867eda3ee05ff7a18bad35750c3714e188b3dc48",
+          "filename": "google-mcp-linux-x86_64.zip",
+          "entrypoint": "dist/index.js",
+          "size": 18005656
+        }
+      ],
       "env": [
         {
           "key": "GOOGLE_MCP_PATH",
