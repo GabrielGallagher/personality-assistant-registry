@@ -1,6 +1,6 @@
 {
-  "version": "0.3.4",
-  "updatedAt": "2026-01-06T07:39:46Z",
+  "version": "0.5.0",
+  "updatedAt": "2026-01-06T18:00:00Z",
   "entries": [
     {
       "id": "google-mcp",
@@ -379,18 +379,131 @@
         "command": "npx -y @upstash/context7-mcp",
         "notes": "Optional CONTEXT7_API_KEY improves rate limits and access to private docs."
       },
-      "env": [
-        {
-          "key": "CONTEXT7_API_KEY",
-          "type": "secret",
-          "required": false,
-          "label": "Context7 API key",
-          "help": "Optional. Get one at https://context7.com/dashboard for higher rate limits."
-        }
-      ]
+        "env": [
+          {
+            "key": "CONTEXT7_API_KEY",
+            "type": "secret",
+            "required": false,
+            "label": "Context7 API key",
+            "help": "Optional. Get one at https://context7.com/dashboard for higher rate limits."
+          }
+        ]
+      },
+      {
+        "id": "local-filesystem",
+        "name": "Local Filesystem MCP",
+        "summary": "Access approved local files and folders.",
+        "version": "built-in",
+        "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+        "category": "filesystem",
+        "runtime": {
+          "preferred": "native",
+          "fallback": "native"
+        },
+        "install": {
+          "method": "manual",
+          "instructions": "Built into the desktop assistant runtime. Enable filesystem access in Agent Settings."
+        },
+        "env": []
+      },
+      {
+        "id": "cloudflare-graphql-mcp",
+        "name": "Cloudflare GraphQL Analytics",
+        "summary": "Query Cloudflare analytics data via GraphQL API.",
+      "version": "1.0.0",
+      "homepage": "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/",
+      "category": "analytics",
+      "runtime": {
+        "preferred": "node",
+        "fallback": "node"
+      },
+      "install": {
+        "method": "command",
+        "command": "npx -y mcp-remote https://graphql.mcp.cloudflare.com/mcp",
+        "notes": "Opens browser for Cloudflare OAuth on first connect."
+      },
+      "env": []
+    },
+    {
+      "id": "cloudflare-docs-mcp",
+      "name": "Cloudflare Docs",
+      "summary": "Search and query Cloudflare documentation.",
+      "version": "1.0.0",
+      "homepage": "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/",
+      "category": "developer-tools",
+      "runtime": {
+        "preferred": "node",
+        "fallback": "node"
+      },
+      "install": {
+        "method": "command",
+        "command": "npx -y mcp-remote https://docs.mcp.cloudflare.com/mcp",
+        "notes": "Opens browser for Cloudflare OAuth on first connect."
+      },
+      "env": []
+    },
+    {
+      "id": "cloudflare-dns-analytics-mcp",
+      "name": "Cloudflare DNS Analytics",
+      "summary": "Query DNS analytics data from Cloudflare.",
+      "version": "1.0.0",
+      "homepage": "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/",
+      "category": "analytics",
+      "runtime": {
+        "preferred": "node",
+        "fallback": "node"
+      },
+      "install": {
+        "method": "command",
+        "command": "npx -y mcp-remote https://dns-analytics.mcp.cloudflare.com/mcp",
+        "notes": "Opens browser for Cloudflare OAuth on first connect."
+      },
+      "env": []
     }
   ],
   "templates": [
+    {
+      "id": "memory-system",
+      "type": "assistant-prompt",
+      "name": "Memory System",
+      "summary": "Set up a workspace-backed memory assistant with auto-inject sources.",
+      "tags": ["memory", "filesystem", "heartbeat"],
+      "requires": ["local-filesystem"],
+      "suggestions": [
+        "Review my memory sources and flag anything missing",
+        "Summarize what changed in the latest journal entries",
+        "Propose a compacting strategy for the current memory files"
+      ],
+      "prompt": "You are a memory-focused assistant that writes to the provided memory root."
+    },
+    {
+      "id": "mcp-ops",
+      "type": "assistant-prompt",
+      "name": "MCP Operations",
+      "summary": "Operate and monitor MCP instances with structured observability.",
+      "tags": ["mcp", "ops", "observability"],
+      "requires": ["context7-mcp"],
+      "suggestions": [
+        "Show me which MCPs are installed and enabled",
+        "Generate a troubleshooting checklist for a failing MCP server",
+        "Summarize recent tool errors and possible fixes"
+      ],
+      "prompt": "You help maintain MCP connectivity, health checks, and agent diagnostics."
+    },
+    {
+      "id": "project-manager",
+      "type": "assistant-prompt",
+      "name": "Project Lead",
+      "summary": "Drive status checks, planning, and release readiness.",
+      "tags": ["planning", "status", "releases"],
+      "requires": ["clickup-mcp"],
+      "suggestions": [
+        "Summarize current project status and blockers",
+        "Draft a release readiness checklist for this week",
+        "Identify the next three tasks to prioritize"
+      ],
+      "prompt": "You are a project lead assistant that tracks status and release readiness."
+    },
     {
       "id": "heartbeat-reminders",
       "type": "heartbeat-task",
@@ -401,7 +514,7 @@
         "personal"
       ],
       "requires": [
-        "mcp:slack-mcp"
+        "slack-mcp"
       ],
       "task": {
         "prompt": "HEARTBEAT TASK: Check Reminders\n\nCurrent time: {{local_time}} ({{timezone}})\nUTC: {{utc_time}}\n\n1. Read {{path.memory_root}}/reminders.yaml\n2. Check for any reminders where target_time has passed (compare to current time above)\n3. For each due reminder:\n   - Use the Slack MCP to send a DM to user {{owner_user_id}} with the reminder message\n   - Update the reminder status to \"sent\" in reminders.yaml (direct edit allowed)\n4. Log what you did\n\nIf reminders.yaml doesn't exist, create it with an empty reminders array.",
@@ -420,7 +533,7 @@
         "ops"
       ],
       "requires": [
-        "mcp:slack-mcp"
+        "slack-mcp"
       ],
       "task": {
         "prompt": "HEARTBEAT TASK: Slack Channel Scan\n\n1. Read {{path.memory_root}}/context.yaml to see current clients and projects\n2. Use the Slack MCP to search recent messages (last 24h) for mentions of:\n   - Client names from context.yaml\n   - Project names (or key initiatives)\n   - Key team members\n3. If you find relevant updates not already captured:\n   - Append journal entries for context.yaml updates\n   - Append journal entries for observations.yaml updates\n4. Be selective - only capture genuinely useful information\n\nKeep it brief, don't overwhelm the files.",
@@ -438,7 +551,7 @@
         "meetings"
       ],
       "requires": [
-        "mcp:buildbetter-mcp"
+        "buildbetter-mcp"
       ],
       "task": {
         "prompt": "HEARTBEAT TASK: BuildBetter Sync\n\n1. Read {{path.memory_root}}/context.yaml to see what's already captured\n2. Use BuildBetter MCP to search for recent call extractions (last 7 days)\n3. Look for:\n   - Client feedback or requests\n   - Commitments made\n   - Action items mentioned\n   - Important decisions\n4. Append journal entries for context.yaml updates\n5. Append journal entries for observations.yaml updates\n\nDon't duplicate information already in the files.",
@@ -456,7 +569,7 @@
         "project-management"
       ],
       "requires": [
-        "mcp:clickup-mcp"
+        "clickup-mcp"
       ],
       "task": {
         "prompt": "HEARTBEAT TASK: ClickUp Sync\n\n1. Read {{path.memory_root}}/tasks.yaml to see current task snapshot\n2. Use ClickUp MCP to check:\n   - Tasks assigned to {{owner_user_id}} that are overdue or due soon\n   - Recently completed tasks\n   - New high-priority tasks\n3. Append journal entries for tasks.yaml changes\n4. If there are urgent items, note them for the next reminder check\n\nKeep the task list focused on what's actionable.",
@@ -479,6 +592,86 @@
         "useGlobalSources": true,
         "schemaTargets": ""
       }
+    },
+    {
+      "id": "wordpress-router",
+      "type": "skill",
+      "name": "WordPress Router",
+      "summary": "Classifies WordPress repos and routes to the right workflow.",
+      "tags": ["wordpress", "routing", "classification", "workflow"],
+      "prompt": "Use when the user asks about WordPress codebases (plugins, themes, block themes, Gutenberg blocks, WP core checkouts) and you need to quickly classify the repo and route to the correct workflow/skill (blocks, theme.json, REST API, WP-CLI, performance, security, testing, release packaging)."
+    },
+    {
+      "id": "wp-project-triage",
+      "type": "skill",
+      "name": "WP Project Triage",
+      "summary": "Detects project type, tooling, and versions automatically.",
+      "tags": ["wordpress", "triage", "detection", "tooling"],
+      "prompt": "Use when you need a deterministic inspection of a WordPress repository (plugin/theme/block theme/WP core/Gutenberg/full site) including tooling/tests/version hints, and a structured JSON report to guide workflows and guardrails."
+    },
+    {
+      "id": "wp-block-development",
+      "type": "skill",
+      "name": "WP Block Development",
+      "summary": "Gutenberg blocks: block.json, attributes, rendering, deprecations.",
+      "tags": ["wordpress", "gutenberg", "blocks", "block-editor", "development"],
+      "prompt": "Use when developing WordPress (Gutenberg) blocks: block.json metadata, register_block_type(_from_metadata), attributes/serialization, supports, dynamic rendering (render.php/render_callback), deprecations/migrations, viewScript vs viewScriptModule, and @wordpress/scripts/@wordpress/create-block build and test workflows."
+    },
+    {
+      "id": "wp-block-themes",
+      "type": "skill",
+      "name": "WP Block Themes",
+      "summary": "Block themes: theme.json, templates, patterns, style variations.",
+      "tags": ["wordpress", "themes", "block-themes", "theme-json", "patterns"],
+      "prompt": "Use when developing WordPress block themes: theme.json (global settings/styles), templates and template parts, patterns, style variations, and Site Editor troubleshooting (style hierarchy, overrides, caching)."
+    },
+    {
+      "id": "wp-plugin-development",
+      "type": "skill",
+      "name": "WP Plugin Development",
+      "summary": "Plugin architecture, hooks, settings API, security.",
+      "tags": ["wordpress", "plugins", "development", "security", "hooks"],
+      "prompt": "Use when developing WordPress plugins: architecture and hooks, activation/deactivation/uninstall, admin UI and Settings API, data storage, cron/tasks, security (nonces/capabilities/sanitization/escaping), and release packaging."
+    },
+    {
+      "id": "wp-interactivity-api",
+      "type": "skill",
+      "name": "WP Interactivity API",
+      "summary": "Frontend interactivity with data-wp-* directives and stores.",
+      "tags": ["wordpress", "interactivity", "frontend", "directives", "state-management"],
+      "prompt": "Use when building or debugging WordPress Interactivity API features (data-wp-* directives, @wordpress/interactivity store/state/actions, block viewScriptModule integration) including performance, hydration, and directive behavior."
+    },
+    {
+      "id": "wp-abilities-api",
+      "type": "skill",
+      "name": "WP Abilities API",
+      "summary": "Capability-based permissions and REST API authentication.",
+      "tags": ["wordpress", "abilities", "permissions", "rest-api", "authentication"],
+      "prompt": "Use when working with the WordPress Abilities API (wp_register_ability, wp_register_ability_category, /wp-json/wp-abilities/v1/*, @wordpress/abilities) including defining abilities, categories, meta, REST exposure, and permissions checks for clients."
+    },
+    {
+      "id": "wp-wpcli-and-ops",
+      "type": "skill",
+      "name": "WP-CLI and Ops",
+      "summary": "WP-CLI commands, automation, multisite, search-replace.",
+      "tags": ["wordpress", "wp-cli", "operations", "automation", "multisite"],
+      "prompt": "Use when working with WP-CLI (wp) for WordPress operations: safe search-replace, db export/import, plugin/theme/user/content management, cron, cache flushing, multisite, and scripting/automation with wp-cli.yml."
+    },
+    {
+      "id": "wp-performance",
+      "type": "skill",
+      "name": "WP Performance",
+      "summary": "Profiling, caching, database optimization, Server-Timing.",
+      "tags": ["wordpress", "performance", "profiling", "caching", "optimization"],
+      "prompt": "Use when investigating or improving WordPress performance (backend-only agent): profiling and measurement (WP-CLI profile/doctor, Server-Timing, Query Monitor via REST headers), database/query optimization, autoloaded options, object caching, cron, HTTP API calls, and safe verification."
+    },
+    {
+      "id": "wp-playground",
+      "type": "skill",
+      "name": "WP Playground",
+      "summary": "WordPress Playground for instant local environments.",
+      "tags": ["wordpress", "playground", "local-development", "testing", "blueprints"],
+      "prompt": "Use for WordPress Playground workflows: fast disposable WP instances in the browser or locally via @wp-playground/cli (server, run-blueprint, build-snapshot), auto-mounting plugins/themes, switching WP/PHP versions, blueprints, and debugging (Xdebug)."
     }
   ]
 }
