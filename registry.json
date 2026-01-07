@@ -1,6 +1,6 @@
 {
-  "version": "0.5.0",
-  "updatedAt": "2026-01-06T18:00:00Z",
+  "version": "0.5.2",
+  "updatedAt": "2026-01-07T19:00:00Z",
   "entries": [
     {
       "id": "google-mcp",
@@ -672,6 +672,42 @@
       "summary": "WordPress Playground for instant local environments.",
       "tags": ["wordpress", "playground", "local-development", "testing", "blueprints"],
       "prompt": "Use for WordPress Playground workflows: fast disposable WP instances in the browser or locally via @wp-playground/cli (server, run-blueprint, build-snapshot), auto-mounting plugins/themes, switching WP/PHP versions, blueprints, and debugging (Xdebug)."
+    },
+    {
+      "id": "docusaurus-expert",
+      "type": "skill",
+      "name": "Docusaurus Expert",
+      "summary": "Expert guidance on Docusaurus documentation site development, configuration, and deployment.",
+      "tags": ["docusaurus", "documentation", "mdx", "theming", "deployment", "ssg"],
+      "source": "https://github.com/davila7/claude-code-templates/blob/main/cli-tool/components/agents/documentation/docusaurus-expert.md",
+      "prompt": "Use when working with Docusaurus documentation sites: docusaurus.config.js configuration, project structure and organization, MDX/Markdown content authoring, sidebar navigation and frontmatter setup, custom theming and component modifications, plugin setup and dependency management, build troubleshooting and performance optimization, SEO configuration, and deployment across platforms. Targets sub-30s builds, sub-3s page loads, optimized bundles, and WCAG 2.1 AA accessibility compliance."
+    },
+    {
+      "id": "motion",
+      "type": "skill",
+      "name": "Motion / Framer Motion",
+      "summary": "React animation library for gestures, scroll effects, layout transitions, and spring physics.",
+      "tags": ["motion", "framer-motion", "animation", "react", "gestures", "scroll", "parallax", "layout", "heroui"],
+      "source": "https://github.com/jezweb/claude-skills/tree/bf1bda415311f14444509d7cb620758847610d7a/skills/motion",
+      "prompt": "Use when implementing React animations with Motion or Framer Motion. IMPORTANT: Check which package the project uses first (framer-motion vs motion) and use the correct imports. HeroUI projects use framer-motion. Covers gesture controls (drag, hover, tap, pan), scroll-triggered animations and parallax, layout transitions with FLIP technique, shared element transitions, exit animations with AnimatePresence, SVG path morphing, spring physics. Includes bundle optimization (LazyMotion), Next.js/Vite/Tauri integration, Tailwind conflict avoidance, and HeroUI coordination."
+    },
+    {
+      "id": "superpowers-bundle",
+      "type": "skill-bundle",
+      "name": "Superpowers",
+      "summary": "Workflow bundle of interdependent skills and bootstraps.",
+      "docs": { "url": "https://github.com/obra/superpowers" },
+      "skills": [
+        "superpowers:brainstorming",
+        "superpowers:writing-plans",
+        "superpowers:executing-plans"
+      ],
+      "install": {
+        "method": "manual",
+        "instructions": "Claude Code: /plugin install superpowers@superpowers-marketplace\nCodex: clone https://github.com/obra/superpowers into ~/.codex/superpowers and add the AGENTS bootstrap.",
+        "notes": "Codex CLI currently requires a CJS/ESM fix for skills-core import."
+      },
+      "backends": ["claude-code", "codex-cli"]
     }
   ]
 }
