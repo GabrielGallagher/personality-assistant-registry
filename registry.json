@@ -1,12 +1,12 @@
 {
-  "version": "0.5.6",
-  "updatedAt": "2026-01-07T23:45:54Z",
+  "version": "0.5.10",
+  "updatedAt": "2026-01-09T01:09:06Z",
   "entries": [
     {
       "id": "google-mcp",
       "name": "Google Workspace MCP",
       "summary": "Gmail, Calendar, Drive, Docs, Sheets, Slides, and more via OAuth.",
-      "version": "1.0.5",
+      "version": "0.5.9",
       "homepage": "https://github.com/GabrielGallagher/google-mcp",
       "category": "workspace",
       "docs": {
@@ -153,7 +153,7 @@
       "id": "slack-mcp",
       "name": "Slack MCP",
       "summary": "Search, read, and post Slack messages via user token.",
-      "version": "0.1.0",
+      "version": "0.5.9",
       "homepage": "https://github.com/jeremyroland/slack-mcp-server",
       "category": "communication",
       "docs": {
@@ -180,7 +180,7 @@
       "id": "clickup-mcp",
       "name": "ClickUp MCP",
       "summary": "Sync ClickUp tasks, statuses, and assignments.",
-      "version": "0.1.0",
+      "version": "0.5.9",
       "homepage": "https://www.npmjs.com/package/@chykalophia/clickup-mcp-server",
       "category": "project-management",
       "docs": {
@@ -207,7 +207,7 @@
       "id": "buildbetter-mcp",
       "name": "BuildBetter MCP",
       "summary": "Meeting insights and call summaries via BuildBetter.",
-      "version": "0.1.0",
+      "version": "0.5.9",
       "homepage": "https://mcp.buildbetter.ai",
       "category": "meetings",
       "docs": {
@@ -234,7 +234,7 @@
       "id": "freescout-mcp",
       "name": "FreeScout MCP",
       "summary": "Shared inbox context and ticket lookups from FreeScout.",
-      "version": "0.1.0",
+      "version": "0.5.9",
       "homepage": "https://www.npmjs.com/package/@verygoodplugins/mcp-freescout",
       "category": "support",
       "docs": {
@@ -266,7 +266,7 @@
       "id": "xero-mcp",
       "name": "Xero MCP",
       "summary": "Xero accounting data with optional read-only mode.",
-      "version": "0.0.14",
+      "version": "0.5.9",
       "homepage": "https://github.com/GabrielGallagher/xero-mcp-server",
       "category": "finance",
       "docs": {
@@ -364,7 +364,7 @@
       "id": "context7-mcp",
       "name": "Context7 MCP",
       "summary": "Up-to-date library docs and code examples on demand.",
-      "version": "2.0.2",
+      "version": "0.5.9",
       "homepage": "https://github.com/upstash/context7",
       "category": "developer-tools",
       "docs": {
@@ -393,7 +393,7 @@
       "id": "openrouter-image-gen-mcp",
       "name": "OpenRouter Image Gen MCP",
       "summary": "Image generation via OpenRouter (Gemini 2.5 Flash Image Preview by default).",
-      "version": "1.0.0",
+      "version": "0.5.9",
       "homepage": "https://github.com/GabrielGallagher/OpenRouter-ImageGen-MCP",
       "category": "developer-tools",
       "docs": {
@@ -440,7 +440,7 @@
       "id": "cloudflare-graphql-mcp",
       "name": "Cloudflare GraphQL Analytics",
       "summary": "Query Cloudflare analytics data via GraphQL API.",
-      "version": "1.0.0",
+      "version": "0.5.9",
       "homepage": "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/",
       "category": "analytics",
       "runtime": {
@@ -458,7 +458,7 @@
       "id": "cloudflare-docs-mcp",
       "name": "Cloudflare Docs",
       "summary": "Search and query Cloudflare documentation.",
-      "version": "1.0.0",
+      "version": "0.5.9",
       "homepage": "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/",
       "category": "developer-tools",
       "runtime": {
@@ -476,7 +476,7 @@
       "id": "cloudflare-dns-analytics-mcp",
       "name": "Cloudflare DNS Analytics",
       "summary": "Query DNS analytics data from Cloudflare.",
-      "version": "1.0.0",
+      "version": "0.5.9",
       "homepage": "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/",
       "category": "analytics",
       "runtime": {
@@ -1638,6 +1638,103 @@
         "claude-code",
         "codex-cli"
       ]
+    },
+    {
+      "id": "plans-authoring-governance",
+      "type": "skill",
+      "name": "Plans Authoring Governance",
+      "summary": "Ensure specs, tasks, decisions, and contracts follow the standard plan structure.",
+      "tags": [
+        "plans",
+        "governance",
+        "workflow"
+      ],
+      "backends": [
+        "claude-code",
+        "codex-cli",
+        "openai-agents"
+      ],
+      "prompt": "# Plans Authoring Governance\n\n## Goal\nEnsure new and updated plans follow the standard structure, frontmatter, and folder placement.\n\n## Required Steps\n1. Read `.plans/index.md` to confirm status and placement.\n2. Use the appropriate template in `.plans/templates/`.\n3. Include Scope Fence and Integration Contracts for specs.\n4. Use `type: documentation` for documentation tasks.\n5. Update `.plans/index.md` when status or location changes.\n6. If working inside the app project system, also use `project-runtime-adapter`.\n7. If using any SuperPowers workflow, also use `superpowers-interop`.\n\n## Folder Rules\n- Drafts -\u003e `.plans/drafts/`\n- Ready/Active specs -\u003e `.plans/specs/`\n- Tasks -\u003e `.plans/tasks/`\n- Decisions -\u003e `.plans/decisions/`\n- Completed/abandoned -\u003e `.plans/archive/`\n\n## Templates\n- Spec: `.plans/templates/spec-template.md`\n- Task: `.plans/templates/task-template.md`\n- Workstream task: `.plans/templates/workstream-task-template.md`\n- Contract: `.plans/templates/contract-template.md`\n- Decision: `.plans/templates/decision-template.md`\n\n## Status Usage\n- Use `verification` for work awaiting checks or validation.\n- Move to `completed` only after verification is done.\n\n## Do Not\n- Do not add new folders without approval.\n- Do not implement out-of-scope items from other specs.\n- Do not leave a file in the wrong folder for its status.\\n"
+    },
+    {
+      "id": "project-context-continuity",
+      "type": "skill",
+      "name": "Project Context Continuity",
+      "summary": "Preserve plan structure, dependencies, and decisions across agents.",
+      "tags": [
+        "plans",
+        "continuity",
+        "workflow"
+      ],
+      "backends": [
+        "claude-code",
+        "codex-cli",
+        "openai-agents"
+      ],
+      "prompt": "# Project Context Continuity\n\n## Goal\nKeep plan structure, dependencies, and decisions portable across agents.\n\n## Required Steps\n1. Read `.plans/CONTEXT.md` first.\n2. Read `.plans/index.md` and the specific plan files you will touch.\n3. Check each plan's Scope Fence + Integration Contracts before implementing.\n4. Use templates from `.plans/templates/` for any new plans or tasks.\n5. Update `.plans/index.md` when you change status or move files.\n6. If working inside the app project system, also use `project-runtime-adapter`.\n7. If using any SuperPowers workflow, also use `superpowers-interop`.\n\n## Plan Structure Rules\n- Drafts live in `.plans/drafts/`.\n- Ready/Active specs live in `.plans/specs/`.\n- Tasks live in `.plans/tasks/`.\n- Completed/abandoned items go to `.plans/archive/`.\n- Decisions (ADRs) live in `.plans/decisions/`.\n\nStatus note:\n- Use `verification` status when work is done but awaiting checks.\n\nTask typing:\n- Use `type: documentation` for doc-only tasks.\n\n## Multi-Agent Workstreams\nWhen splitting a big plan:\n- Create a parent spec in `.plans/specs/`.\n- Create a shared contract in `.plans/specs/contracts/`.\n- Create one workstream task per agent in `.plans/tasks/`.\n- Add checkpoints (contract draft, midpoint sync, integration handoff).\n\n## Context Template\nIf `.plans/CONTEXT.md` is missing or outdated, rebuild it using:\n- `.plans/templates/context-template.md`\n\n## Templates\n- Spec: `.plans/templates/spec-template.md`\n- Task: `.plans/templates/task-template.md`\n- Workstream task: `.plans/templates/workstream-task-template.md`\n- Contract: `.plans/templates/contract-template.md`\n- Decision: `.plans/templates/decision-template.md`\n\n## Expected Behavior\n- Do not implement out-of-scope items from other plans.\n- Do not move files without updating `.plans/index.md`.\n- If unsure, ask before changing plan structure or dependencies.\\n"
+    },
+    {
+      "id": "interop-skill-authoring",
+      "type": "skill",
+      "name": "Interop Skill Authoring",
+      "summary": "Author skills that are backend-agnostic and registry-ready by default.",
+      "tags": [
+        "skills",
+        "interop",
+        "registry"
+      ],
+      "backends": [
+        "claude-code",
+        "codex-cli",
+        "openai-agents"
+      ],
+      "prompt": "# Interop Skill Authoring\n\n## Goal\nCreate skills that are backend-agnostic and registry-ready by default.\n\n## Required output\n- SKILL.md with frontmatter name and description only.\n- Name uses lowercase letters, digits, hyphens.\n- Description starts with \"Use when...\" and only states triggers (no workflow).\n- ASCII-only unless the repo already uses Unicode.\n- Resources only in scripts/, references/, assets/ when needed.\n\n## Interop checklist\n1. Use canonical tool categories in instructions (read, write, edit, shell, plan, mcp, http, vision, audio).\n2. Do not assume subagents; provide a no-subagent fallback.\n3. Avoid backend-specific phrasing in the main steps.\n4. Use relative paths; avoid absolute paths.\n5. Provide fallbacks when a tool is missing or unsupported.\n\n## Compatibility section (include in every new skill)\n\n```\n## Compatibility\n\nRequired tools:\n- read\n- write\n- shell\n\nOptional tools:\n- edit\n- plan\n- mcp\n- http\n- vision\n- audio\n\nBackend notes:\n- claude-code: TodoWrite, Bash, Edit, Read, Write\n- codex-cli: update_plan, shell_command, apply_patch, Read, Write\n- openai-agents: map to available tools; if missing, use manual steps\n\nFallbacks:\n- If write/edit is unavailable, output a patch/diff and ask the user to apply it.\n- If shell is unavailable, provide commands only and ask the user to run them.\n- If mcp is unavailable, skip MCP steps and explain manual alternatives.\n```\n\n## Registry notes section (include in every new skill)\n\n```\n## Registry Notes\n\nsummary: \"Short summary of what this skill enables\"\ntags: [\"skills\", \"interop\", \"domain\"]\nbackends: [\"claude-code\", \"codex-cli\", \"openai-agents\"]\nsource: \"(optional) URL or repo for provenance\"\n```\n\n## Minimal skeleton\n\n```\n---\nname: my-skill\ndescription: Use when ...\n---\n\n# My Skill\n\n## Overview\nOne or two sentences on the core idea.\n\n## When to Use\n- Trigger symptoms and examples.\n- When NOT to use it.\n\n## Workflow\nStep-by-step, tool-agnostic instructions.\n\n## Compatibility\n(Use the compatibility template above.)\n\n## Registry Notes\n(Use the registry notes template above.)\n```\n"
+    },
+    {
+      "id": "superpowers-interop",
+      "type": "skill",
+      "name": "Superpowers Interop",
+      "summary": "Keep Superpowers workflows compatible with this repo's .plans governance.",
+      "tags": [
+        "plans",
+        "interop",
+        "superpowers"
+      ],
+      "backends": [
+        "claude-code",
+        "codex-cli",
+        "openai-agents"
+      ],
+      "prompt": "# Superpowers Interop\n\n## Overview\nKeep SuperPowers workflows compatible with this repo's `.plans` governance.\n\n## Overrides\n- Any plan/spec/task output goes in `.plans/` using `.plans/templates/*`.\n- Never write to `docs/plans/` here.\n- Always update `.plans/index.md` and `.plans/CONTEXT.md` on status or location change.\n\n## Execution Notes\n- If SuperPowers suggests worktrees, use the current repo unless the user requests one.\n- If SuperPowers expects a plan header, keep our frontmatter and add execution details\n  under existing sections.\n- If verification is required, write a verification report in `.plans/` and link it\n  from the index.\n\n## When To Ask\nAsk if a SuperPowers instruction conflicts with scope fences, contracts, or the\napp vs. repo mode.\\n"
+    },
+    {
+      "id": "project-runtime-adapter",
+      "type": "skill",
+      "name": "Project Runtime Adapter",
+      "summary": "Align .plans artifacts with the in-app project system runtime.",
+      "tags": [
+        "projects",
+        "app-runtime",
+        "plans"
+      ],
+      "backends": [
+        "claude-code",
+        "codex-cli",
+        "openai-agents"
+      ],
+      "prompt": "# Project Runtime Adapter\n\n## Overview\nBridge repo-based plan files with the app's project system. Use only when the\napp runtime is available.\n\n## Core Rules\n- Always follow `plans-authoring-governance` and `project-context-continuity` first.\n- Keep `.plans/` as the source of truth for specs and tasks unless the app runtime\n  explicitly replaces a field.\n- If the app runtime is not available, stop and use repo-only behavior.\n\n## App Runtime Alignment\nWhen the project system is available:\n1. Bind the current plan/spec/task to the active project record (project ID or slug).\n2. Mirror status changes between `.plans/` and the project UI.\n3. Attach verification reports and artifacts in the project UI, but keep the report\n   file in `.plans/` as well.\n4. Use workstreams UI only for tasks that already exist in `.plans/tasks/`.\n\n## Fallback (Repo Mode)\n- Skip project DB, workstreams UI, and artifact UI.\n- Maintain `.plans/index.md` and `.plans/CONTEXT.md` manually.\n- If unsure which mode applies, ask before writing app-specific metadata.\\n"
     }
   ]
 }
+
+
+
+
+
+
+
+
+
+
+
+
