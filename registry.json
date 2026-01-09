@@ -1,6 +1,6 @@
 {
-  "version": "0.5.10",
-  "updatedAt": "2026-01-09T01:09:06Z",
+  "version": "0.5.11",
+  "updatedAt": "2026-01-09T01:12:53Z",
   "entries": [
     {
       "id": "google-mcp",
@@ -1712,6 +1712,9 @@
       "type": "skill",
       "name": "Project Runtime Adapter",
       "summary": "Align .plans artifacts with the in-app project system runtime.",
+      "docs": {
+        "path": "docs/project-runtime-adapter.md"
+      },
       "tags": [
         "projects",
         "app-runtime",
