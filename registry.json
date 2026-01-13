@@ -1,6 +1,6 @@
 {
-  "version": "0.5.11",
-  "updatedAt": "2026-01-09T01:12:53Z",
+  "version": "0.5.12",
+  "updatedAt": "2026-01-09T03:50:45Z",
   "entries": [
     {
       "id": "google-mcp",
@@ -390,9 +390,39 @@
       ]
     },
     {
+      "id": "openrouter-image-gen",
+      "name": "OpenRouter Image Gen",
+      "summary": "Built-in OpenRouter image generation connector.",
+      "version": "0.5.9",
+      "homepage": "https://github.com/GabrielGallagher/OpenRouter-ImageGen-MCP",
+      "category": "developer-tools",
+      "docs": {
+        "path": "docs/openrouter-image-gen.md"
+      },
+      "runtime": {
+        "preferred": "node",
+        "fallback": "node"
+      },
+      "install": {
+        "method": "builtin",
+        "instructions": "Bundled with the desktop app."
+      },
+      "builtIn": true,
+      "env": [
+        {
+          "key": "OPENROUTER_API_KEY",
+          "type": "secret",
+          "required": true,
+          "label": "OpenRouter API Key",
+          "help": "Your OpenRouter API key (starts with sk-or-).",
+          "placeholder": "sk-or-..."
+        }
+      ]
+    },
+    {
       "id": "openrouter-image-gen-mcp",
       "name": "OpenRouter Image Gen MCP",
-      "summary": "Image generation via OpenRouter (Gemini 2.5 Flash Image Preview by default).",
+      "summary": "Deprecated: use openrouter-image-gen (core) instead.",
       "version": "0.5.9",
       "homepage": "https://github.com/GabrielGallagher/OpenRouter-ImageGen-MCP",
       "category": "developer-tools",
@@ -420,9 +450,30 @@
       ]
     },
     {
+      "id": "filesystem",
+      "name": "Filesystem MCP",
+      "summary": "Built-in filesystem access for approved local files and folders.",
+      "version": "1.0.0",
+      "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+      "category": "filesystem",
+      "docs": {
+        "path": "docs/filesystem.md"
+      },
+      "runtime": {
+        "preferred": "native",
+        "fallback": "native"
+      },
+      "install": {
+        "method": "builtin",
+        "instructions": "Bundled with the desktop app."
+      },
+      "builtIn": true,
+      "env": []
+    },
+    {
       "id": "local-filesystem",
       "name": "Local Filesystem MCP",
-      "summary": "Access approved local files and folders.",
+      "summary": "Deprecated: use filesystem (core) instead.",
       "version": "built-in",
       "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
       "category": "filesystem",
@@ -432,8 +483,29 @@
       },
       "install": {
         "method": "manual",
-        "instructions": "Built into the desktop assistant runtime. Enable filesystem access in Agent Settings."
+        "instructions": "Deprecated. Use filesystem (core) instead."
       },
+      "env": []
+    },
+    {
+      "id": "host-control",
+      "name": "Host Control",
+      "summary": "Built-in host automation for input, screen, windows, clipboard, system, and accessibility actions.",
+      "version": "1.0.0",
+      "homepage": "https://github.com/GabrielGallagher/gab-desktop-claude-sdk",
+      "category": "developer-tools",
+      "docs": {
+        "path": "docs/host-control.md"
+      },
+      "runtime": {
+        "preferred": "native",
+        "fallback": "native"
+      },
+      "install": {
+        "method": "builtin",
+        "instructions": "Bundled with the desktop app."
+      },
+      "builtIn": true,
       "env": []
     },
     {
@@ -503,7 +575,7 @@
         "heartbeat"
       ],
       "requires": [
-        "local-filesystem"
+        "filesystem"
       ],
       "suggestions": [
         "Review my memory sources and flag anything missing",

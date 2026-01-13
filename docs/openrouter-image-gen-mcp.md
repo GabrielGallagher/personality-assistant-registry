@@ -1,4 +1,6 @@
-﻿# OpenRouter Image Generation MCP
+# OpenRouter Image Generation MCP
+
+Deprecated: use the core connector openrouter-image-gen instead.
 
 Image generation connector for OpenRouter image models (default: Gemini 2.5 Flash Image Preview).
 
@@ -17,3 +19,4 @@ Image generation connector for OpenRouter image models (default: Gemini 2.5 Flas
 - This connector uses OpenRouter's chat completions endpoint for image generation.
 - Provide model overrides via the `model` field in `generate_image`.
 - Save output files with `save_to_file: true`.
+
