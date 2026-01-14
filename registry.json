@@ -1,6 +1,6 @@
 {
-  "version": "0.5.12",
-  "updatedAt": "2026-01-09T03:50:45Z",
+  "version": "0.5.15",
+  "updatedAt": "2026-01-14T02:32:34Z",
   "entries": [
     {
       "id": "google-mcp",
@@ -393,7 +393,7 @@
       "id": "openrouter-image-gen",
       "name": "OpenRouter Image Gen",
       "summary": "Built-in OpenRouter image generation connector.",
-      "version": "0.5.9",
+      "version": "1.0.0",
       "homepage": "https://github.com/GabrielGallagher/OpenRouter-ImageGen-MCP",
       "category": "developer-tools",
       "docs": {
@@ -407,6 +407,44 @@
         "method": "builtin",
         "instructions": "Bundled with the desktop app."
       },
+      "artifacts": [
+        {
+          "platform": "windows",
+          "arch": "x86_64",
+          "url": "https://registry.npmjs.org/openrouter-image-gen-mcp/-/openrouter-image-gen-mcp-1.0.0.tgz",
+          "sha256": "f20e5776562686b3aeb9dce78289bbea86af29419e37fc4488d4d4ce70a889ae",
+          "filename": "openrouter-image-gen-mcp-1.0.0.tgz",
+          "entrypoint": "dist/index.js",
+          "size": 13252
+        },
+        {
+          "platform": "macos",
+          "arch": "aarch64",
+          "url": "https://registry.npmjs.org/openrouter-image-gen-mcp/-/openrouter-image-gen-mcp-1.0.0.tgz",
+          "sha256": "f20e5776562686b3aeb9dce78289bbea86af29419e37fc4488d4d4ce70a889ae",
+          "filename": "openrouter-image-gen-mcp-1.0.0.tgz",
+          "entrypoint": "dist/index.js",
+          "size": 13252
+        },
+        {
+          "platform": "macos",
+          "arch": "x86_64",
+          "url": "https://registry.npmjs.org/openrouter-image-gen-mcp/-/openrouter-image-gen-mcp-1.0.0.tgz",
+          "sha256": "f20e5776562686b3aeb9dce78289bbea86af29419e37fc4488d4d4ce70a889ae",
+          "filename": "openrouter-image-gen-mcp-1.0.0.tgz",
+          "entrypoint": "dist/index.js",
+          "size": 13252
+        },
+        {
+          "platform": "linux",
+          "arch": "x86_64",
+          "url": "https://registry.npmjs.org/openrouter-image-gen-mcp/-/openrouter-image-gen-mcp-1.0.0.tgz",
+          "sha256": "f20e5776562686b3aeb9dce78289bbea86af29419e37fc4488d4d4ce70a889ae",
+          "filename": "openrouter-image-gen-mcp-1.0.0.tgz",
+          "entrypoint": "dist/index.js",
+          "size": 13252
+        }
+      ],
       "builtIn": true,
       "env": [
         {
@@ -423,7 +461,7 @@
       "id": "openrouter-image-gen-mcp",
       "name": "OpenRouter Image Gen MCP",
       "summary": "Deprecated: use openrouter-image-gen (core) instead.",
-      "version": "0.5.9",
+      "version": "1.0.0",
       "homepage": "https://github.com/GabrielGallagher/OpenRouter-ImageGen-MCP",
       "category": "developer-tools",
       "docs": {
@@ -453,7 +491,7 @@
       "id": "filesystem",
       "name": "Filesystem MCP",
       "summary": "Built-in filesystem access for approved local files and folders.",
-      "version": "1.0.0",
+      "version": "2025.12.18",
       "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
       "category": "filesystem",
       "docs": {
@@ -467,6 +505,44 @@
         "method": "builtin",
         "instructions": "Bundled with the desktop app."
       },
+      "artifacts": [
+        {
+          "platform": "windows",
+          "arch": "x86_64",
+          "url": "https://registry.npmjs.org/@modelcontextprotocol/server-filesystem/-/server-filesystem-2025.12.18.tgz",
+          "sha256": "a0b6b1071717cb174f22d898f5ca3cab10d7558d4c56b94a1eefc002a31122d1",
+          "filename": "server-filesystem-2025.12.18.tgz",
+          "entrypoint": "dist/index.js",
+          "size": 16683
+        },
+        {
+          "platform": "macos",
+          "arch": "aarch64",
+          "url": "https://registry.npmjs.org/@modelcontextprotocol/server-filesystem/-/server-filesystem-2025.12.18.tgz",
+          "sha256": "a0b6b1071717cb174f22d898f5ca3cab10d7558d4c56b94a1eefc002a31122d1",
+          "filename": "server-filesystem-2025.12.18.tgz",
+          "entrypoint": "dist/index.js",
+          "size": 16683
+        },
+        {
+          "platform": "macos",
+          "arch": "x86_64",
+          "url": "https://registry.npmjs.org/@modelcontextprotocol/server-filesystem/-/server-filesystem-2025.12.18.tgz",
+          "sha256": "a0b6b1071717cb174f22d898f5ca3cab10d7558d4c56b94a1eefc002a31122d1",
+          "filename": "server-filesystem-2025.12.18.tgz",
+          "entrypoint": "dist/index.js",
+          "size": 16683
+        },
+        {
+          "platform": "linux",
+          "arch": "x86_64",
+          "url": "https://registry.npmjs.org/@modelcontextprotocol/server-filesystem/-/server-filesystem-2025.12.18.tgz",
+          "sha256": "a0b6b1071717cb174f22d898f5ca3cab10d7558d4c56b94a1eefc002a31122d1",
+          "filename": "server-filesystem-2025.12.18.tgz",
+          "entrypoint": "dist/index.js",
+          "size": 16683
+        }
+      ],
       "builtIn": true,
       "env": []
     },
@@ -477,6 +553,9 @@
       "version": "built-in",
       "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
       "category": "filesystem",
+      "docs": {
+        "path": "docs/local-filesystem.md"
+      },
       "runtime": {
         "preferred": "native",
         "fallback": "native"
@@ -505,6 +584,44 @@
         "method": "builtin",
         "instructions": "Bundled with the desktop app."
       },
+      "artifacts": [
+        {
+          "platform": "windows",
+          "arch": "x86_64",
+          "url": "https://github.com/GabrielGallagher/host-control/releases/download/v1.0.0/host-control-mcp-1.0.0.tgz",
+          "sha256": "35ede228da05e90912ac1e7dfb429d5f414991bb665e9b39da7a6885ae1b417a",
+          "filename": "host-control-mcp-1.0.0.tgz",
+          "entrypoint": "dist/host-control-mcp.js",
+          "size": 20664
+        },
+        {
+          "platform": "macos",
+          "arch": "aarch64",
+          "url": "https://github.com/GabrielGallagher/host-control/releases/download/v1.0.0/host-control-mcp-1.0.0.tgz",
+          "sha256": "35ede228da05e90912ac1e7dfb429d5f414991bb665e9b39da7a6885ae1b417a",
+          "filename": "host-control-mcp-1.0.0.tgz",
+          "entrypoint": "dist/host-control-mcp.js",
+          "size": 20664
+        },
+        {
+          "platform": "macos",
+          "arch": "x86_64",
+          "url": "https://github.com/GabrielGallagher/host-control/releases/download/v1.0.0/host-control-mcp-1.0.0.tgz",
+          "sha256": "35ede228da05e90912ac1e7dfb429d5f414991bb665e9b39da7a6885ae1b417a",
+          "filename": "host-control-mcp-1.0.0.tgz",
+          "entrypoint": "dist/host-control-mcp.js",
+          "size": 20664
+        },
+        {
+          "platform": "linux",
+          "arch": "x86_64",
+          "url": "https://github.com/GabrielGallagher/host-control/releases/download/v1.0.0/host-control-mcp-1.0.0.tgz",
+          "sha256": "35ede228da05e90912ac1e7dfb429d5f414991bb665e9b39da7a6885ae1b417a",
+          "filename": "host-control-mcp-1.0.0.tgz",
+          "entrypoint": "dist/host-control-mcp.js",
+          "size": 20664
+        }
+      ],
       "builtIn": true,
       "env": []
     },
